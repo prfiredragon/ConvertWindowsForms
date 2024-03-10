@@ -2,6 +2,7 @@
 
 # ConvertWindowsForms
 
+Fully based on ConvertForm from Laurent Dardenne. 
 Powershell module for converting a Windows Forms App (.NET Framework) file (xxx.Designer.cs) to a PowerShell script .ps1
 
 ## To install the module :
@@ -17,6 +18,5 @@ $Destination = ".\GuiTest\"
 Convert-Form -Path $Source -Destination $Destination -Encoding ascii -force 
 
 ```
-
 
 
