@@ -13,6 +13,7 @@ Powershell module for converting a Windows Forms App (.NET Framework) file (xxx.
 
 ```Powershell
 Import-Module -Name .\modules\ConvertForm
+
 $Source = "YOURPATH\source\repos\WindowsFormsApp1\WindowsFormsApp1\Form1.Designer.cs"
 $Destination = ".\GuiTest\"
 Convert-Form -Path $Source -Destination $Destination -Encoding ascii -force 
