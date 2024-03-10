@@ -1,6 +1,6 @@
-﻿[![Inactively Maintained](https://img.shields.io/badge/Maintenance%20Level-Inactively%20Maintained-yellowgreen.svg)](https://gist.github.com/cheerfulstoic/d107229326a01ff0f333a1d3476e068d)
+![maintenance-status](https://img.shields.io/badge/maintenance-passively--maintained-yellowgreen.svg)
 
-# ConvertForm
+# ConvertWindowsForms
 
 Powershell module for converting a Windows Forms App (.NET Framework) file (xxx.Designer.cs) to a PowerShell script .ps1
 
@@ -17,5 +17,6 @@ $Destination = ".\GuiTest\"
 Convert-Form -Path $Source -Destination $Destination -Encoding ascii -force 
 
 ```
+
 
 
