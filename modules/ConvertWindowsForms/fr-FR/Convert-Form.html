@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Convert-Form</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<style>
+body { font:80% Verdana,Tahoma,Arial,sans-serif; }
+h1, h2, h3, h4 {  font-family: "Trebuchet MS",Georgia,"Times New Roman",serif; }
+ul.toc { padding: 4px; margin-left: 0; }
+ul.toc li { list-style-type:none; }
+ul.toc li.heading2 { margin-left: 1em; }
+ul.toc li.heading3 { margin-left: 2em; }
+</style>
+</head>
+<body>
+<p style="text-align:center;"> <img src="https://download-codeplex.sec.s-msft.com/Download?ProjectName=convertform&DownloadId=898560&Build=20959" alt="" /></p>
+
+<h1>Documentation Fran&ccedil;aise</h1>
+<p><strong>Convert-Form</strong></p>
+<p>D&rsquo;apr&egrave;s une id&eacute;e originale de Jean-Louis, Robin Lemesle et Arnaud Petitjean. La version d&rsquo;origine a &eacute;t&eacute; publi&eacute;e sur le site <a href="http://powershell-scripting.com/index.php?option=com_joomlaboard&amp;Itemid=76&amp;func=view&amp;id=2014&amp;catid=14#2014" target="_blank"> PowerShell-Scripting.com</a>.</p>
+<p>Je tiens &agrave; remercier <a href="http://sjrd.developpez.com/">S&eacute;bastien Doeraene</a> pour son aide sur les expressions r&eacute;guli&egrave;res.</p>
+<p>Test&eacute; avec PowerShell V4 sous Windows Seven x64 et Visual Studio 2010.</p>
+<p>Ce module permet de convertir les d&eacute;clarations de cr&eacute;ation d&rsquo;une WinForm C# en un script PowerShell. Le fichier source est un fichier xxx.Designer.cs, cr&eacute;&eacute; &agrave; l&rsquo;aide de Visual Studio (toutes versions).</p>
+<p>T&eacute;l&eacute;charger la version gratuite de <a href="https://www.microsoft.com/fr-fr/download/details.aspx?id=34673" target="_blank"> Visual Studio Express 2012 pour Windows Desktop</a>.</p>
+<p><strong>Sommaire</strong></p>
+<ul>
+<li><a href="#Installation-des-scripts">Installation du module</a></li>
+<li><a href="#Convertir-un-fichier-Winform">Convertir un fichier Winform</a></li>
+<li><a href="#Comment-r&eacute;percuter-les-modifications-du-fichier-Designer">Comment r&eacute;percuter les modifications du fichier Designer</a></li>
+<li><a href="#Coder-les-&eacute;v&eacute;nements-des-composants-graphiques">Coder les &eacute;v&eacute;nements des composants graphiques</a></li>
+<li><a href="#Cr&eacute;ation-d&rsquo;un-gestionnaire-d&rsquo;&eacute;v&eacute;nement">Cr&eacute;ation d&rsquo;un gestionnaire d&rsquo;&eacute;v&eacute;nement</a></li>
+</ul>
+<h2>&nbsp;</h2>
+<h2 id="Installation-des-scripts">Installation du module</h2>
+<p>Recopiez les fichiers dans un de vos r&eacute;pertoires de Module.</p>
+<h2 id="Convertir-un-fichier-Winform">Convertir un fichier Winform</h2>
+<p>Une fois le module ConvertForm charg&eacute;, vous pouvez :<br /> -soit vous placez dans le r&eacute;pertoire du projet Winform</p>
+<pre>cd C:\VisualStudioPath\ProjetPath
+Convert-Form Form1.Designer.cs Form1.ps1
+</pre>
+<p>&nbsp;Si vous pr&eacute;cisez les deux noms de fichier le premier r&eacute;f&eacute;rence le fichier de la Form, le second le fichier .PS1&nbsp;&nbsp; g&eacute;n&eacute;r&eacute;.</p>
+<p>-soit vous placez dans le r&eacute;pertoire dans lequel vous souhaitez cr&eacute;e le fichier <br /> cd C:\temp\test<br /> Convert-Form C:\VisualStudioPath\ProjetPath\Form1.Designer.cs Form1.ps1</p>
+<p>&nbsp;Une fois le script g&eacute;n&eacute;r&eacute; (Form1.ps1), ex&eacute;cutez-le et corrigez les erreurs &eacute;ventuelles. Il peut y en avoir, car bien que de nombreux objets graphiques soient support&eacute;s tous les cas d&rsquo;utilisation de leurs propri&eacute;t&eacute;s n&rsquo;ont pas &eacute;t&eacute; test&eacute;s. La syntaxe du script est v&eacute;rifi&eacute;e lors de la cr&eacute;ation, mais elle ne garantit pas l&rsquo;ex&eacute;cution correcte du script.</p>
+<h2 id="Comment-r&eacute;percuter-les-modifications-du-fichier-Designer">Comment r&eacute;percuter les modifications du fichier Designer</h2>
+<p>Un projet Winform ne se cr&eacute;e pas en une seule op&eacute;ration, dans le cas o&ugrave; vous modifiez votre projet Winform vous serez amen&eacute; &agrave; r&eacute;g&eacute;n&eacute;rer un script PowerShell.</p>
+<p><br /> Le probl&egrave;me maintenant est de reporter les modifications de ce nouveau script dans l'ancien script, pour ce faire l'outil gratuit WinMerge vous facilitera la t&acirc;che.</p>
+<p>Pensez toutefois &agrave; pr&eacute;ciser un nouveau nom diff&eacute;rent de script de l&rsquo;ancien et &agrave; ne pas utiliser le param&egrave;tre <em>&ndash;Force</em> qui remplace le fichier existant sans demander de confirmation.</p>
+<p>Par exemple la recopie d&rsquo;&eacute;cran suivante affiche la diff&eacute;rence entre les deux versions d&rsquo;un script utilisant le m&ecirc;me projet Winform. Les nouvelles lignes concernant l&rsquo;ajout d&rsquo;un nouveau bouton peuvent facilement &ecirc;tre r&eacute;percut&eacute;es du nouveau script vers l&rsquo;ancien.</p>
+<p style="text-align: center;"><img src="http://add-lib.developpez.com/Wiki/Documentation/Convert-Form/images/Convert-Form-Winmerge.jpg" alt="" /></p>
+<h2 id="Coder-les-&eacute;v&eacute;nements-des-composants-graphiques">Coder les &eacute;v&eacute;nements des composants graphiques</h2>
+<h3 id="Cr&eacute;ation-d&rsquo;un-gestionnaire-d&rsquo;&eacute;v&eacute;nement">Cr&eacute;ation d&rsquo;un gestionnaire d&rsquo;&eacute;v&eacute;nement</h3>
+<p>Voici la d&eacute;claration de la signature d&rsquo;une fonction g&eacute;rant un &eacute;v&eacute;nement d&rsquo;une WinForm :</p>
+<pre>function OnFormClosing_Form1()
+</pre>
+<p><br /> Dans la port&eacute;e du code de la fonction le param&egrave;tre <strong>$this</strong> est &eacute;gal au param&egrave;tre sender (object) du C#. Il r&eacute;f&eacute;rence l&rsquo;objet d&eacute;clenchant l&rsquo;&eacute;v&eacute;nement.</p>
+<p>Le param&egrave;tre <strong>$_</strong> est &eacute;gal au param&egrave;tre e (eventarg) du C#. Il contient des informations sur l&rsquo;&eacute;v&eacute;nement d&eacute;clench&eacute;.</p>
+<p><br /> L&rsquo;appel par le gestionnaire d&rsquo;&eacute;v&eacute;nement d&rsquo;un composant, de la fonction g&eacute;rant cet &eacute;v&eacute;nement se fait de la mani&egrave;re suivante :</p>
+<pre>$Form1.Add_FormClosing( { OnFormClosing_Form1} )
+</pre>
+<p><br /> <em>OnFormClosing_Form1</em> est le nom de la fonction &agrave; appeler. On ne renseigne aucun param&egrave;tre puisque PowerShell consid&egrave;re cette fonction comme respectant la signature du d&eacute;l&eacute;gu&eacute; de l&rsquo;&eacute;v&eacute;nement.</p>
+<p><br /> Dans la fonction OnFormClosing_Form1 la variable <strong>$this</strong>, sera &eacute;gale &agrave; <em>$Form1</em> et la variable <strong>$_</strong> contiendra un objet descendant de la classe Eventargs.</p>
+<p><a href="https://convertform.codeplex.com/wikipage?title=Limites-composants-support%C3%A9s">Limites et composants support&eacute;s</a>.</p>
+<p><a href="Limites_et_composants_supportés.html" class="wiki-page">Limites et composants supportés</a></p>
+</body>
+</html>
