@@ -2,17 +2,17 @@
  
  # ConvertForm
 
-![Logo](https://github.com/LaurentDardenne/ConvertForm/blob/master/Convert-Form-Icon.jpg)
 
-Powershell module for converting a Winform file (xxx.Designer.cs) to a PowerShell script .ps1
+
+Powershell module for converting a Windows Forms App (.NET Framework) file (xxx.Designer.cs) to a PowerShell script .ps1
 
 
 
 To install thi module :
-Download it to a place you want, here I am assuming that you hace it on a directory called modules on the directory that you have the test script
-write the corect path to yout project on the $Source variable
-write the correct destination on the $Destination variable
-Create a powershel file and import the module
+write the corect path to yout project on the $Source variable on testconvertWindowsForms.ps1
+write the correct destination on the $Destination variable on testconvertWindowsForms.ps1
+Save and run
+
 ```Powershell
 Import-Module -Name .\modules\ConvertForm
 $Source = "YOURPATH\source\repos\WindowsFormsApp1\WindowsFormsApp1\Form1.Designer.cs"
