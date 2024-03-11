@@ -1,4 +1,4 @@
-﻿#Can be changed as needed.
+#Can be changed as needed.
 
 Function Add-Header{
  #Creates the header script
@@ -17,7 +17,7 @@ $Line
 `#  Author  :
 `#  Date    : $Date
 `#
- #  Generated with ConvertForm module version $( $Myinvocation.MyCommand.Module.Version)
+`#  Generated with ConvertWindowsForms module version $( $Myinvocation.MyCommand.Module.Version)
 `#  PowerShell version $($PSVersionTable.PSVersion)
 `#
 `#  Invocation Line   : $InvocationLine
